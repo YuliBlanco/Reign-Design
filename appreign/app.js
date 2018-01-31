@@ -1,4 +1,5 @@
 var express = require('express');
+var router = express.Router();
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -6,7 +7,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var getJSON = require('get-json');
 var mongoose = require('mongoose');
+
 mongoose.connect('mongodb://localhost:37017/reigndesign' );
+
 var Reign = mongoose.model('Reign', mongoose.Schema({
 	story_id: String,
   story_title: String,
@@ -79,6 +82,13 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+function getNews(){
+    Reign.findAll( function(error,docs){
+        console.log(docs);
+    });
+}
+
+router.get('/getNews', getNews);
 
 
 init();

@@ -2,8 +2,8 @@ routerConfig.$inject = ['$routeProvider'];
 
 function routerConfig($routeProvider) {
     $routeProvider.when('/', {
-        'templateUrl': 'public/templates/news.html',
-        'NewsController': 'ReceivableCtrl',
+        'templateUrl': '../templates/news.html',
+        'controller': 'NewsController',
         'controllerAs': 'news'
     }).otherwise({'redirectTo': '/'});
 }

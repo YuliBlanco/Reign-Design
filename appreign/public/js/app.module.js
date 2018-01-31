@@ -1,4 +1,4 @@
-angular.module('NewsManager', ['ngRoute', 'ng-bootstrap-datepicker', 'ui.utils.masks'])
+angular.module('NewsManager', ['ngRoute'])
     .controller('NewsController', NewsController)
     .service('NewsService', NewsService)
     .config(routerConfig)
