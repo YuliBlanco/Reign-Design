@@ -19,19 +19,4 @@ block content
               th(scope='row') sdihisdjflkdflskd
               td= story_title
                           td= doc_description
-   div(class="container")
-        table(class="uk-table uk-table-striped uk-table-small")
-          thead
-            tr
-              th Document ID
-              th Title
-              th Category
-              th Author
-              th Description
-          tfoot
-            tbody
-                for data in datos
-                tr
-                      td.text_center=data.story_title
-                      td.text_center=data.author
-                      td.text_center=data.created_at
+    
