@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var getJSON = require('get-json');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/reigndesign' );
+mongoose.connect('mongodb://localhost:37017/reigndesign' );
 var Reign = mongoose.model('Reign', mongoose.Schema({
 	story_id: String,
   story_title: String,
@@ -78,6 +78,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 init();
 
