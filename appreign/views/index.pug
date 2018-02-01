@@ -8,15 +8,15 @@ block content
     h1 HN Feed
       h2 We <3 hacker news!
   div.container
-    table.table
-          thead.thead-dark
-            tr
-              th(scope='col') noticia
-              th(scope='col') story_title
-
-          tbody
-            tr
-              th(scope='row') sdihisdjflkdflskd
-              td= story_title
-                          td= doc_description
-    
+      table#tabla.table.table-striped
+            thead
+              tr
+                th.text_center
+                  | Noticia
+                th.text_center
+                  | Fecha
+                th.text_center
+                  tbody
+                //     for dato in Reign
+                      tr
+                        td.text_center=dato.story_title

@@ -1,5 +1,4 @@
 var express = require('express');
-var router = express.Router();
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -7,9 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var getJSON = require('get-json');
 var mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost:37017/reigndesign' );
-
+mongoose.connect('mongodb://localhost/reigndesign' );
 var Reign = mongoose.model('Reign', mongoose.Schema({
 	story_id: String,
   story_title: String,
@@ -20,7 +17,7 @@ var Reign = mongoose.model('Reign', mongoose.Schema({
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var control = require('./controllers/reign');
+
 
 var app = express();
 
@@ -38,13 +35,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-
 //llamar json
 
 function init(){
   getJSON('https://hn.algolia.com/api/v1/search_by_date?query=nodejs', function(error, response){ mapNews(response.hits); }); //console.log(response)
 }
-
+// Obtiene todos los objetos Persona de la base de datos
+exports.getNoticias = function (req, res){
+	Noticias.find(
+		function(err, noticias) {
+			if (err)
+				res.send(err)
+					res.Res.render ("index", {Reign: reign}); // devuelve todas las Personas en JSON		
+				}
+			);
+}
 function mapNews (news){
   if (news.length === 0) return;
   news.forEach(function(_new){
@@ -64,8 +69,6 @@ function mapNews (news){
   });
 }
 
-// Import Controllers
-var Reign = require('./controllers/reign');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -84,15 +87,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-function getNews(){
-    Reign.findAll( function(error,docs){
-        console.log(docs);
-    });
-}
-
-router.get('/getNews', getNews);
-
 
 init();
 
